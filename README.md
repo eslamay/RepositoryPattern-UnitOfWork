@@ -35,18 +35,7 @@ Instead of writing raw queries in controllers or services, we use repositories t
 **Advantages:**
 - Separation of concerns.  
 - Cleaner and more testable code.  
-- Centralized data access logic.  
-
-**Example:**
-```csharp
-public interface IBaseRepository<T> where T : class
-{
-    IEnumerable<T> GetAll();
-    T GetById(int id);
-    void Add(T entity);
-    void Update(T entity);
-    void Delete(int id);
-}
+- Centralized data access logic.
 
 ---
 
@@ -66,8 +55,18 @@ It ensures that all database operations either **succeed together** or **fail to
 
 ---
 
-### 🏗️ Interface
+**Example:**
 ```csharp
+public interface IBaseRepository<T> where T : class
+{
+    IEnumerable<T> GetAll();
+    T GetById(int id);
+    void Add(T entity);
+    void Update(T entity);
+    void Delete(int id);
+}
+
+---
 public interface IUnitOfWork : IDisposable
 {
     IBaseRepository Authors { get; }
